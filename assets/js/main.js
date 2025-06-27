@@ -1,13 +1,33 @@
 const originalUsers = [
-    {id:1,name:"Juan Daniel",lastName:"Rua",email:"juan@gmail.com",phoneNumber:"1234567",country:"Colombia",city:"Medellin",address:"Calle 66 # 44b - 55", postalCode: "050001",password:"password1",images:[], logs:[], notes:[]},
+    {id:1,name:"Juan Daniel",lastName:"Rua",email:"juan@gmail.com",phoneNumber:"1234567",country:"Colombia",city:"Medellin",address:"Calle 66 # 44b - 55", postalCode: "050001",password:"password1",images:[], logs:[], notes:[
+    "Termina el proyecto de Java antes del viernes.",
+    "Recordar llamar al doctor para la cita anual.",
+    "Aprender sobre promesas en JavaScript."
+  ]},
 
-    {id:2, name:"Laura Sofía", lastName:"Gómez", email:"laura@gmail.com", phoneNumber:"7654321", country:"Colombia", city:"Bogotá", address:"Carrera 12 # 45 - 78", postalCode: "110111", password:"password2", images:[], logs:[], notes:[]},
+    {id:2, name:"Laura Sofía", lastName:"Gómez", email:"laura@gmail.com", phoneNumber:"7654321", country:"Colombia", city:"Bogotá", address:"Carrera 12 # 45 - 78", postalCode: "110111", password:"password2", images:[], logs:[], notes:[
+    "Hacer 30 minutos de ejercicio hoy.",
+    "Revisar el presupuesto del mes.",
+    "Escribir una página del diario personal."
+  ]},
 
-    {id:3, name:"Carlos Andrés", lastName:"Torres", email:"carlos@gmail.com", phoneNumber:"3012345678", country:"Colombia", city:"Cali", address:"Calle 9 # 34 - 21", postalCode: "760001", password:"password3", images:[], logs:[], notes:[]},
+    {id:3, name:"Carlos Andrés", lastName:"Torres", email:"carlos@gmail.com", phoneNumber:"3012345678", country:"Colombia", city:"Cali", address:"Calle 9 # 34 - 21", postalCode: "760001", password:"password3", images:[], logs:[], notes:[
+    "Estudiar 1 hora de inglés con Anki.",
+    "Leer al menos 10 páginas del libro actual.",
+    "Organizar los archivos del escritorio."
+  ]},
 
-    {id:4, name:"Mariana", lastName:"Pérez", email:"mariana@gmail.com", phoneNumber:"3123456789", country:"Colombia", city:"Barranquilla", address:"Avenida 30 # 15 - 60", postalCode: "080001", password:"password4", images:[], logs:[], notes:[]},
+    {id:4, name:"Mariana", lastName:"Pérez", email:"mariana@gmail.com", phoneNumber:"3123456789", country:"Colombia", city:"Barranquilla", address:"Avenida 30 # 15 - 60", postalCode: "080001", password:"password4", images:[], logs:[], notes:[
+    "Investigar sobre frameworks de desarrollo web.",
+    "Limpiar el cuarto antes de las 6 pm.",
+    "Practicar algoritmos durante 20 minutos."
+  ]},
 
-    {id:5, name:"Santiago", lastName:"Ramírez", email:"santiago@gmail.com", phoneNumber:"3224567890", country:"Colombia", city:"Bucaramanga", address:"Calle 45 # 20 - 15", postalCode: "680001", password:"password5", images:[], logs:[], notes:[]}
+    {id:5, name:"Santiago", lastName:"Ramírez", email:"santiago@gmail.com", phoneNumber:"3224567890", country:"Colombia", city:"Bucaramanga", address:"Calle 45 # 20 - 15", postalCode: "680001", password:"password5", images:[], logs:[], notes:[
+    "Buscar ideas para el canal de YouTube.",
+    "Enviar correo al profesor con las dudas.",
+    "Desconectarse del celular al menos 1 hora antes de dormir."
+  ]}
 
 ]
 
@@ -27,20 +47,19 @@ buttonLogIn.addEventListener("click",()=>{
 
     if(emailField.value && passwordField.value){
 
-    for(const user of users){
+        for(const user of users){
 
-        if((user.email == emailField.value) && user.password == passwordField.value){
+            if((user.email == emailField.value) && user.password == passwordField.value){
 
-            window.location = "assets/html/images.html"
+                window.sessionStorage.setItem("auth","true")
+                window.location = "assets/html/images.html"
+
+            }
 
         }
 
+
     }
 
-
-}
-
 })
-
-
 
