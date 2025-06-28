@@ -115,5 +115,6 @@ agregarBtn.addEventListener('click', () => {
     guardarUsuariosEnLocalStorage();
     mostrarNotasUsuario(usuarioActivo);
     notaTexto.value = '';
+    addLog("Agregar una nota",usuarioActivo,users)
   }
 });

@@ -1,48 +1,56 @@
+let usuarios = JSON.parse(localStorage.getItem("users"))
+console.log(usuarios)
+let userChosen = usuarios[parseInt(localStorage.getItem("userIndex"))]
+
 // Obtener usuario activo desde sessionStorage
 function getActiveUser() {
-    return JSON.parse(sessionStorage.getItem("activeUser"));
+    return usuarios[parseInt(localStorage.getItem("userIndex"))];
+    // return JSON.parse(sessionStorage.getItem("activeUser"));
 }
 
 // Obtener logs desde localStorage
-function getLogs() {
-    return JSON.parse(localStorage.getItem("logs")) || [];
+function getLogs(usario) {
+    return usario.logs;
 }
 
 // Guardar logs en localStorage
-function saveLogs(logs) {
-    localStorage.setItem("logs", JSON.stringify(logs));
+function saveLogs() {
+    localStorage.setItem("users", JSON.stringify(usuarios));
 }
 
 // Agregar nuevo log (esta es la función que usarán tus compañeros)
-function addLog(actionType) {
-    const user = getActiveUser();
+function addLog(actionType,aimUser,allUsers) {
+    const user = aimUser;
+    console.log(user)
     if (!user) return;
 
-    const logs = getLogs();
+    const logs = user.logs;
     const newLog = {
         user: user.email,
-        role: user.rol,
+        // role: user.rol,
         time: new Date().toLocaleString(),
         action: actionType
     };
 
     logs.push(newLog);
-    saveLogs(logs);
+    localStorage.setItem("users", JSON.stringify(allUsers));
+    console.log(logs)
 }
 
 // Mostrar logs en logs.html
-(function showLogs() {
+function showLogs() {
+    console.log(!window.location.href.includes("logs.html"))
     if (!window.location.href.includes("logs.html")) return;
 
     const user = getActiveUser();
     if (!user) return;
 
-    const allLogs = getLogs();
+    const allLogs = getLogs(userChosen);
 
-    // Filtrar logs: si es admin, ve todos; si no, ve solo los suyos
+    // // Filtrar logs: si es admin, ve todos; si no, ve solo los suyos
     const visibleLogs = user.rol === "admin"
-        ? allLogs
-        : allLogs.filter(log => log.user === user.email);
+         ? allLogs
+         : allLogs.filter(log => log.user === user.email);
 
     const section = document.querySelector("section");
 
@@ -68,4 +76,7 @@ function addLog(actionType) {
 
     content += "</ul>";
     section.innerHTML = content;
-})();
+};
+
+
+showLogs()

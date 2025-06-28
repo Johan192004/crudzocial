@@ -3,7 +3,7 @@ let chosenUserIndex = parseInt(JSON.parse(window.localStorage.getItem("userIndex
 
 const Agregar = document.getElementById("Agregar")
 const inputURL = document.querySelector("input")
-const buttonPost = document.querySelector("button")
+const buttonPost = document.querySelector(".agregarImagen")
 
 
 let chosenUser = users[chosenUserIndex]
@@ -38,7 +38,9 @@ function verifyLogIn(){
     }
 }   
 
-verifyLogIn()
+// verifyLogIn()
+
+console.log(buttonPost)
 
 buttonPost.addEventListener("click",()=>{
 
@@ -50,7 +52,8 @@ buttonPost.addEventListener("click",()=>{
 
         let latestValidImgIndex = chosenUser.images.length
         console.log(latestValidImgIndex)
-   
+        
+        addLog("Agregar imagen",chosenUser,users)
 
         let imgURL = inputURL.value
         let imgContainer = document.createElement("div")
@@ -60,9 +63,10 @@ buttonPost.addEventListener("click",()=>{
         Agregar.appendChild(imgContainer)
 
         chosenUser.images.push(imgURL)
+        window.localStorage.setItem("users",JSON.stringify(users))
 
         let botonEliminar = imgContainer.querySelector("#img-eliminar")
-
+        console.log(chosenUser.images)
         botonEliminar.addEventListener("click",()=>{
             
             if(confirm("Estas seguro que deseas eliminar la imagen?")){
@@ -70,6 +74,7 @@ buttonPost.addEventListener("click",()=>{
 
                 console.log(latestValidImgIndex)
                 chosenUser.images.splice(latestValidImgIndex,1)
+                console.log(chosenUser.images)
                 window.localStorage.setItem("users",JSON.stringify(users))
             } 
         })
@@ -80,19 +85,3 @@ buttonPost.addEventListener("click",()=>{
     }
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
