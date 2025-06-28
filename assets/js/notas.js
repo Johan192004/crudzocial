@@ -39,6 +39,14 @@ const notasContainer = document.querySelector('.notas-container');
 const agregarBtn = document.getElementById('agregar-nota');
 const notaTexto = document.getElementById('nota-texto');
 
+function verifyLogIn(){
+    if(window.sessionStorage.getItem("auth") != "true"){
+        window.location = "../../login.html"
+    }
+}   
+
+verifyLogIn()
+
 // --- LocalStorage helpers ---
 function guardarUsuariosEnLocalStorage() {
   localStorage.setItem('users', JSON.stringify(users));

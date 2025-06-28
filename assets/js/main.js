@@ -1,5 +1,5 @@
 const originalUsers = [
-    {id:1,name:"Juan Daniel",lastName:"Rua",email:"juan@gmail.com",phoneNumber:"1234567",country:"Colombia",city:"Medellin",address:"Calle 66 # 44b - 55", postalCode: "050001",password:"password1",images:[], logs:[], notes:[
+    {id:1,name:"Juan Daniel",lastName:"Rua",email:"juan@gmail.com",phoneNumber:"1234567",country:"Colombia",city:"Medellin",address:"Calle 66 # 44b - 55", postalCode: "050001",password:"password1",images:["https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR1K53M5KVkQW6Az6xQpLeQJyKoJHAW9aON9syospfNNx4_lHa1_1-g8v4UO2w37yTZIMyDyfXuPfGc7V574DYItTgU5obCEqWsmlXB5P8", "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSqsHsVxaj7SalYt6C5vml8etZKmEx-NJ9LQGZPAOfRNwy-JLVeWc_AmEtZLZVQGSq-Sg--6WCGITk2NCm_1ZBt3bsSWAl9ktsQE4VQkg"], logs:[], notes:[
     "Termina el proyecto de Java antes del viernes.",
     "Recordar llamar al doctor para la cita anual.",
     "Aprender sobre promesas en JavaScript."
@@ -46,12 +46,16 @@ let buttonLogIn = document.querySelector("button")
 buttonLogIn.addEventListener("click",()=>{
 
     if(emailField.value && passwordField.value){
+      console.log("primero")
 
-        for(const user of users){
+        for(const user in users){
+          
 
-            if((user.email == emailField.value) && user.password == passwordField.value){
+            if((users[user].email == emailField.value) && (users[user].password == passwordField.value)){
+                console.log("encontre")
 
                 window.sessionStorage.setItem("auth","true")
+                window.localStorage.setItem("userIndex",user)
                 window.location = "assets/html/images.html"
 
             }

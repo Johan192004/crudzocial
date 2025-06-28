@@ -1,4 +1,4 @@
-export function verifyLogIn(){
+function verifyLogIn(){
     if(window.sessionStorage.getItem("auth") != "true"){
         window.location = "../../login.html"
     }
