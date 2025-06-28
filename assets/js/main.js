@@ -56,7 +56,7 @@ buttonLogIn.addEventListener("click",()=>{
 
                 window.sessionStorage.setItem("auth","true")
                 window.localStorage.setItem("userIndex",user)
-                window.location = "assets/html/images.html"
+                window.location = "assets/html/notes.html"
 
             }
 
