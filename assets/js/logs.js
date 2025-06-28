@@ -18,7 +18,7 @@ function saveLogs() {
     localStorage.setItem("users", JSON.stringify(usuarios));
 }
 
-// Agregar nuevo log (esta es la función que usarán tus compañeros)
+// Agregar nuevo log
 function addLog(actionType,aimUser,allUsers) {
     const user = aimUser;
     console.log(user)
