@@ -1,3 +1,11 @@
+function verifyLogIn(){
+    if(sessionStorage.getItem("auth") !== "true" || !sessionStorage.getItem("user")){
+        window.location = "../../login.html"
+    }
+}
+
+verifyLogIn()
+
 let users = JSON.parse(window.localStorage.getItem("users"))
 let chosenUserIndex = parseInt(JSON.parse(window.localStorage.getItem("userIndex")))
 
@@ -38,7 +46,6 @@ function verifyLogIn(){
     }
 }   
 
-// verifyLogIn()
 
 console.log(buttonPost)
 
@@ -85,3 +92,15 @@ buttonPost.addEventListener("click",()=>{
     }
 
 })
+
+
+// Manejar el cierre de sesión
+const logoutBtn = document.getElementById("logout");
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    sessionStorage.clear(); // Elimina 
+    window.location.href = "../../login.html"; 
+  });
+}

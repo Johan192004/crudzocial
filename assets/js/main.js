@@ -43,26 +43,28 @@ let passwordField = document.getElementById("password")
 
 let buttonLogIn = document.querySelector("button")
 
-buttonLogIn.addEventListener("click",()=>{
+buttonLogIn.addEventListener("click", () => {
+  if (emailField.value && passwordField.value) {
+    let found = false;
 
-    if(emailField.value && passwordField.value){
-      console.log("primero")
-
-        for(const user in users){
-          
-
-            if((users[user].email == emailField.value) && (users[user].password == passwordField.value)){
-                console.log("encontre")
-
-                window.sessionStorage.setItem("auth","true")
-                window.localStorage.setItem("userIndex",user)
-                window.location = "assets/html/images.html"
-
-            }
-
-        }
-
-
+    for (let i = 0; i < users.length; i++) {
+      if (
+        users[i].email.toLowerCase() === emailField.value.trim().toLowerCase() &&
+        users[i].password === passwordField.value.trim()
+      ) {
+        window.sessionStorage.setItem("auth", "true");
+        window.sessionStorage.setItem("user", users[i].email);
+        window.localStorage.setItem("userIndex", i);
+        window.location = "assets/html/images.html";
+        found = true;
+        break;
+      }
     }
 
-})
+    if (!found) {
+      alert("Correo o contraseña incorrectos.");
+    }
+  } else {
+    alert("Por favor completa todos los campos.");
+  }
+});

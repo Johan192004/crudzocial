@@ -1,10 +1,3 @@
-let users = JSON.parse(window.localStorage.getItem("users"))
-
-
-const notasContainer = document.querySelector('.notas-container');
-const agregarBtn = document.getElementById('agregar-nota');
-const notaTexto = document.getElementById('nota-texto');
-
 function verifyLogIn(){
     if(window.sessionStorage.getItem("auth") != "true"){
         window.location = "../../login.html"
@@ -12,6 +5,14 @@ function verifyLogIn(){
 }   
 
 verifyLogIn()
+
+
+let users = JSON.parse(window.localStorage.getItem("users"))
+
+
+const notasContainer = document.querySelector('.notas-container');
+const agregarBtn = document.getElementById('agregar-nota');
+const notaTexto = document.getElementById('nota-texto');
 
 // --- LocalStorage helpers ---
 function guardarUsuariosEnLocalStorage() {
@@ -118,3 +119,15 @@ agregarBtn.addEventListener('click', () => {
     addLog("Agregar una nota",usuarioActivo,users)
   }
 });
+
+
+// Manejar el cierre de sesión
+const logoutBtn = document.getElementById("logout");
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    sessionStorage.clear(); // Elimina 
+    window.location.href = "../../login.html"; 
+  });
+}

@@ -1,3 +1,11 @@
+function verifyLogIn(){
+    if(window.sessionStorage.getItem("auth") != "true"){
+        window.location = "../../login.html"
+    }
+}   
+
+verifyLogIn();
+
 let usuarios = JSON.parse(localStorage.getItem("users"))
 console.log(usuarios)
 let userChosen = usuarios[parseInt(localStorage.getItem("userIndex"))]
@@ -9,8 +17,8 @@ function getActiveUser() {
 }
 
 // Obtener logs desde localStorage
-function getLogs(usario) {
-    return usario.logs;
+function getLogs(usuario) {
+    return usuario.logs;
 }
 
 // Guardar logs en localStorage
@@ -80,3 +88,15 @@ function showLogs() {
 
 
 showLogs()
+
+
+// Manejar el cierre de sesión
+const logoutBtn = document.getElementById("logout");
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    sessionStorage.clear(); // Elimina 
+    window.location.href = "../../login.html"; 
+  });
+}

@@ -1,0 +1,113 @@
+:root {
+    --primary-color: #a822dd;
+    --secondary-color: #7b21af;
+    --success-color: rgb(25, 135, 84);
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
+
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #cdd7daf5, #ceacf5);
+}
+
+h4 {
+    color: var(--secondary-color);
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+
+h5 {
+  color: var(--secondary-color)!important;
+  border-bottom: 2px solid var(--primary-color)!important;
+  padding-bottom: 5px;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--primary-color)!important;
+  transition: background-color 0.3s ease-in-out;
+}
+
+header {
+  position: relative;
+  z-index: 1050;
+}
+
+a {
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-decoration: none;
+
+}
+a:hover {
+    transform: scale(1.1);
+}
+
+.nav-link {
+    color: var(--secondary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color)!important;
+    border-color: var(--secondary-color);
+}   
+
+.card-header {
+    background-color: var(--primary-color)!important;
+}
+
+.container {
+    margin: 1rem auto;
+}
+
+.nav-item {
+    background-color: #81b9f1;
+    border-radius: 0.5rem;
+    margin: 0.3rem;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+   
+}
+.nav-item:hover {
+     transform: scale(1.1);
+}
+
+.list-group-item {
+    height: auto;
+    width: 7rem;
+    background-color: #81b9f1;
+    border-radius: 0.5rem;
+    margin: 0.3rem;
+    padding: 0.5rem 0.3rem;
+    transition: background-color 0.3s ease;
+    transform: scale(1.1);
+}
+
+.list-group-item:hover {
+    background-color: #1f8de7bd;
+    transform: scale(1.1);
+}
+
+.list-group-flush {
+    border-radius: 0.5rem;
+    padding: 10px !important;
+    gap: 0.3rem;
+}
+
+#message {
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+

@@ -1,39 +1,45 @@
-const sessionUser = sessionStorage.getItem("user") || "test@ejemplo.com"; // Usuario predeterminado para pruebas
-// Comentar la redirección para desarrollo
-// if (!sessionUser) {
-//   window.location.href = "login.html";
-// }
+// Verificar sesion activa
+function verifyLogIn() {
+  if (sessionStorage.getItem("auth") !== "true" || !sessionStorage.getItem("user")) {
+    window.location.href = "../../login.html";
+  }
+}
 
+verifyLogIn(); 
+
+// Obtener el correo del usuario que inició sesión
+const sessionUser = sessionStorage.getItem("user");
+
+// Obtener lista de usuarios del localStorage
 let users = JSON.parse(localStorage.getItem("users")) || [];
-let currentUser = users.find(u => u.email === sessionUser) || {
-  email: sessionUser,
-  name: "",
-  lastname: "",
-  phone: "",
-  country: "",
-  city: "",
-  address: "",
-  postalCode: ""
-}; // Usuario predeterminado si no se encuentra
 
-// Actualizar el nombre del usuario en el encabezado
+// Buscar al usuario actual por su correo
+let currentUser = users.find(u => u.email === sessionUser);
+
+// Si no se encuentra el usuario, cerrar sesión
+if (!currentUser) {
+  sessionStorage.clear();
+  window.location.href = "../../login.html";
+}
+
+// Mostrar el nombre del usuario en el encabezado
 document.getElementById("userName").textContent = currentUser.name || "Usuario";
 
 // Rellenar el formulario con los datos del usuario
 document.getElementById("name").value = currentUser.name;
-document.getElementById("lastname").value = currentUser.lastname;
+document.getElementById("lastName").value = currentUser.lastName;
 document.getElementById("email").value = currentUser.email;
-document.getElementById("phone").value = currentUser.phone;
+document.getElementById("phoneNumber").value = currentUser.phoneNumber;
 document.getElementById("country").value = currentUser.country;
 document.getElementById("city").value = currentUser.city;
 document.getElementById("address").value = currentUser.address;
 document.getElementById("postalCode").value = currentUser.postalCode;
 
-// Manejar el envío del formulario
+// Evento al enviar el formulario
 document.getElementById("profile-form").addEventListener("submit", function(e) {
-  e.preventDefault();
+  e.preventDefault(); // Evita que recargue la página
 
-  // Actualizar propiedades del usuario actual (excepto email, que está deshabilitado)
+  // Actualiza los datos del usuario actual
   currentUser.name = document.getElementById("name").value;
   currentUser.lastname = document.getElementById("lastname").value;
   currentUser.phone = document.getElementById("phone").value;
@@ -42,25 +48,26 @@ document.getElementById("profile-form").addEventListener("submit", function(e) {
   currentUser.address = document.getElementById("address").value;
   currentUser.postalCode = document.getElementById("postalCode").value;
 
-  // Actualizar el nombre en el encabezado
+  // Actualiza el nombre en el encabezado
   document.getElementById("userName").textContent = currentUser.name || "Usuario";
 
-  // Actualizar o agregar el usuario en el arreglo de users
+  // Actualiza el usuario en el array y guarda en localStorage
   let index = users.findIndex(u => u.email === sessionUser);
   if (index !== -1) {
     users[index] = currentUser;
-  } else {
-    users.push(currentUser);
   }
 
-  // Guardar en localStorage
+  // Guardar usuarios actualizados
   localStorage.setItem("users", JSON.stringify(users));
+
+  // Agregar registro de actividad
+  addLog("Actualizó sus datos de perfil", currentUser, users);
 
   // Mostrar mensaje de éxito
   showMessage("Actualizado con éxito", "success");
 });
 
-// Función para mostrar mensajes en la página
+// Muestra un mensaje temporal en la página
 function showMessage(text, type) {
   const messageContainer = document.getElementById("message");
   messageContainer.textContent = text;
@@ -68,21 +75,36 @@ function showMessage(text, type) {
   messageContainer.style.display = "block";
   setTimeout(() => {
     messageContainer.style.display = "none";
-  }, 3000); // Ocultar después de 3 segundos
+  }, 3000);
 }
 
-// Cargar y mostrar logs
-let allLogs = JSON.parse(localStorage.getItem("logs")) || [];
-let myLogs = allLogs.filter(log => log.email === sessionUser);
-
+// Mostrar los logs del usuario en pantalla
 let logsContainer = document.getElementById("logs");
-myLogs.forEach(log => {
-  logsContainer.innerHTML += `<p class="mb-1">${log.date} — ${log.action}</p>`;
-});
+if (logsContainer) {
+  let myLogs = currentUser.logs || [];
+  myLogs.forEach(log => {
+    logsContainer.innerHTML += `<p class="mb-1">${log.time} — ${log.action}</p>`;
+  });
+}
 
-// Manejar el cierre de sesión
-document.getElementById("logout").addEventListener("click", function(e) {
-  e.preventDefault(); // Prevenir comportamiento predeterminado del enlace
-  sessionStorage.removeItem("user");
-  window.location.href = "login.html";
-});
+// Evento para cerrar sesión
+const logoutBtn = document.getElementById("logout");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    sessionStorage.clear();
+    window.location.href = "../../login.html";
+  });
+}
+
+// Función para agregar un nuevo registro (log) de actividad
+function addLog(actionType, user, allUsers) {
+  const newLog = {
+    email: user.email,
+    time: new Date().toLocaleString(),
+    action: actionType
+  };
+  user.logs = user.logs || [];
+  user.logs.push(newLog);
+  localStorage.setItem("users", JSON.stringify(allUsers));
+}
