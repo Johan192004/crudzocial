@@ -29,7 +29,7 @@ for(const URL in chosenUser.images){
         
         if(confirm("Estas seguro que deseas eliminar la imagen?")){
             imgContainer.remove()
-
+            addLog("Eliminar imagen",chosenUser,users)
             chosenUser.images.splice(URL,1)
             window.localStorage.setItem("users",JSON.stringify(users))
         } 
@@ -93,14 +93,14 @@ buttonPost.addEventListener("click",()=>{
 
 })
 
-
+document.getElementById("userName").textContent = chosenUser.name;
 // Manejar el cierre de sesión
-const logoutBtn = document.getElementById("logout");
+// let logoutBtn = document.getElementById("logout");
 
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    sessionStorage.clear(); // Elimina 
-    window.location.href = "../../login.html"; 
-  });
-}
+// if (logoutBtn) {
+//   logoutBtn.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     sessionStorage.clear(); // Elimina 
+//     window.location.href = "../../login.html"; 
+//   });
+// }

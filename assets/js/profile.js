@@ -23,7 +23,8 @@ if (!currentUser) {
 }
 
 // Mostrar el nombre del usuario en el encabezado
-document.getElementById("userName").textContent = currentUser.name || "Usuario";
+console.log(currentUser.name)
+document.getElementById("userName").textContent = currentUser.name;
 
 // Rellenar el formulario con los datos del usuario
 document.getElementById("name").value = currentUser.name;
@@ -41,12 +42,13 @@ document.getElementById("profile-form").addEventListener("submit", function(e) {
 
   // Actualiza los datos del usuario actual
   currentUser.name = document.getElementById("name").value;
-  currentUser.lastname = document.getElementById("lastname").value;
-  currentUser.phone = document.getElementById("phone").value;
+  currentUser.lastName = document.getElementById("lastName").value;
+  currentUser.phoneNumber = document.getElementById("phoneNumber").value;
   currentUser.country = document.getElementById("country").value;
   currentUser.city = document.getElementById("city").value;
   currentUser.address = document.getElementById("address").value;
   currentUser.postalCode = document.getElementById("postalCode").value;
+  console.log(currentUser)
 
   // Actualiza el nombre en el encabezado
   document.getElementById("userName").textContent = currentUser.name || "Usuario";
@@ -98,13 +100,31 @@ if (logoutBtn) {
 }
 
 // Función para agregar un nuevo registro (log) de actividad
-function addLog(actionType, user, allUsers) {
-  const newLog = {
-    email: user.email,
-    time: new Date().toLocaleString(),
-    action: actionType
-  };
-  user.logs = user.logs || [];
-  user.logs.push(newLog);
-  localStorage.setItem("users", JSON.stringify(allUsers));
+// function addLog(actionType, user, allUsers) {
+//   const newLog = {
+//     email: user.email,
+//     time: new Date().toLocaleString(),
+//     action: actionType
+//   };
+//   user.logs = user.logs || [];
+//   user.logs.push(newLog);
+//   localStorage.setItem("users", JSON.stringify(allUsers));
+// }
+
+function addLog(actionType,aimUser,allUsers) {
+    const user = aimUser;
+    console.log(user)
+    if (!user) return;
+
+    const logs = user.logs;
+    const newLog = {
+        user: user.email,
+        // role: user.rol,
+        time: new Date().toLocaleString(),
+        action: actionType
+    };
+
+    logs.push(newLog);
+    localStorage.setItem("users", JSON.stringify(allUsers));
+    console.log(logs)
 }

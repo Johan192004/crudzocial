@@ -6,6 +6,7 @@ function verifyLogIn(){
 
 verifyLogIn();
 
+
 let usuarios = JSON.parse(localStorage.getItem("users"))
 console.log(usuarios)
 let userChosen = usuarios[parseInt(localStorage.getItem("userIndex"))]
@@ -86,12 +87,13 @@ function showLogs() {
     section.innerHTML = content;
 };
 
-
-showLogs()
-
+console.log(window.location.pathname)
+ if (window.location.pathname.endsWith("logs.html")) {
+    showLogs()
+ }
 
 // Manejar el cierre de sesión
-const logoutBtn = document.getElementById("logout");
+let logoutBtn = document.getElementById("logout");
 
 if (logoutBtn) {
   logoutBtn.addEventListener("click", function (e) {
@@ -100,3 +102,6 @@ if (logoutBtn) {
     window.location.href = "../../login.html"; 
   });
 }
+
+
+document.getElementById("userName").textContent = userChosen.name;

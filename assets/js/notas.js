@@ -64,6 +64,8 @@ function crearNota(texto, idx = null) {
       if (usuarioActivo && idx !== null) {
         usuarioActivo.notes[idx] = nuevoTexto;
         guardarUsuariosEnLocalStorage();
+        console.log("Edito una nota")
+        addLog("Editar nota",usuarioActivo,users)
       }
     }
   });
@@ -75,6 +77,8 @@ function crearNota(texto, idx = null) {
       usuarioActivo.notes.splice(idx, 1);
       guardarUsuariosEnLocalStorage();
       mostrarNotasUsuario(usuarioActivo);
+      addLog("Eliminar nota",usuarioActivo,users)
+
     }
   });
 
@@ -102,6 +106,7 @@ let usuarioActivo = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   usuarioActivo = obtenerUsuario(nombreUsuarioActivo);
+  document.getElementById("userName").textContent = usuarioActivo.name;
   if (usuarioActivo) {
     mostrarNotasUsuario(usuarioActivo);
   } else {
@@ -121,13 +126,14 @@ agregarBtn.addEventListener('click', () => {
 });
 
 
-// Manejar el cierre de sesión
-const logoutBtn = document.getElementById("logout");
 
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    sessionStorage.clear(); // Elimina 
-    window.location.href = "../../login.html"; 
-  });
-}
+// Manejar el cierre de sesión
+// const logoutBtn = document.getElementById("logout");
+
+// if (logoutBtn) {
+//   logoutBtn.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     sessionStorage.clear(); // Elimina 
+//     window.location.href = "../../login.html"; 
+//   });
+// }
