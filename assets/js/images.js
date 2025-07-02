@@ -95,12 +95,12 @@ buttonPost.addEventListener("click",()=>{
 
 document.getElementById("userName").textContent = chosenUser.name;
 //Manejar el cierre de sesión
-let logoutBtn = document.getElementById("logout");
+// let logoutBtn = document.getElementById("logout");
 
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    sessionStorage.clear(); // Elimina 
-    window.location.href = "../../index.html"; 
-  });
-}
+// if (logoutBtn) {
+//   logoutBtn.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     sessionStorage.clear(); // Elimina 
+//     window.location.href = "../../index.html"; 
+//   });
+// }

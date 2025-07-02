@@ -128,12 +128,12 @@ agregarBtn.addEventListener('click', () => {
 
 
 //Manejar el cierre de sesión
-const logoutBtn = document.getElementById("logout");
+// const logoutBtn = document.getElementById("logout");
 
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    sessionStorage.clear(); // Elimina 
-    window.location.href = "../../index.html"; 
-  });
-}
+// if (logoutBtn) {
+//   logoutBtn.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     sessionStorage.clear(); // Elimina 
+//     window.location.href = "../../index.html"; 
+//   });
+// }
