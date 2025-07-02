@@ -99,7 +99,7 @@ if (logoutBtn) {
   logoutBtn.addEventListener("click", function (e) {
     e.preventDefault();
     sessionStorage.clear(); // Elimina 
-    window.location.href = "../../login.html"; 
+    window.location.href = "../../index.html"; 
   });
 }
 
