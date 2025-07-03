@@ -5,13 +5,13 @@ Integrantes:
 
 BRAHIAM RUIZ
 
-JOHAN RAMIREZ
+JOHAN RAMIREZ MARIN
 
-JUAN ALVAREZ
+JUAN MANUEL ARANGO ARANA
 
-JUAN RAMIREZ
+JUAN DANIEL RUA MARIN
 
-JULIO
+JULIO CESAR MOLINA MONTOYA
 
 Descripción del Sistema y su Objetivo
 Crudzocial es una aplicación web sencilla diseñada para gestionar perfiles de usuario, permitiendo el inicio de sesión, la visualización y edición de datos personales, así como la gestión de imágenes, notas y registros de actividad (logs).
